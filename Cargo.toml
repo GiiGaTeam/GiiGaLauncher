@@ -1,0 +1,14 @@
+[package]
+name = "giga-launcher"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+iced = { version = "0.13.1", features = ["highlighter", "tokio", "debug"]}
+
+chrono = { version = "0.4.39", features = ["serde"] }
+rfd = "0.15.1"
+tokio = { version = "1.0.0", features = ["fs"] }
+
+serde = "1.0.216"
+serde_json = "1.0.133"
