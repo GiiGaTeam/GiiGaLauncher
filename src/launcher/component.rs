@@ -1,3 +1,5 @@
+use std::path::Path;
+
 use iced::{
     widget::{Button, Column, Container, Row, Text},
     Element, Length, Task,
@@ -5,12 +7,16 @@ use iced::{
 
 use crate::project::Project;
 
+use super::settings::Settings;
+
 pub struct Launcher {
+    settings: Settings,
     projects: Vec<Project>,
 }
 
 #[derive(Debug, Clone)]
 pub enum Message {
+    LoadSettings(Settings),
     LoadProjects,
     CreateProject,
     OpenProject,
@@ -18,12 +24,19 @@ pub enum Message {
 }
 
 impl Launcher {
+    const LAUNCHER_SETTINGS_PATH: &'static str = "GiiGaLauncher.json";
+
     pub fn new() -> (Self, Task<Message>) {
         (
             Launcher {
                 projects: Vec::new(),
+                settings: Default::default(),
             },
-            Task::none(),
+            Task::perform(async {
+                open_settings(Self::LAUNCHER_SETTINGS_PATH).await
+            }, |settings| {
+                Message::LoadSettings(settings)
+            })
         )
     }
 
@@ -42,6 +55,10 @@ impl Launcher {
                 self.projects = projects;
                 Task::none()
             }
+            Message::LoadSettings(settings) => {
+                self.settings = settings;
+                Task::none()
+            },
         }
     }
 
@@ -82,4 +99,32 @@ impl Launcher {
 
         Container::new(content).padding(20).into()
     }
+}
+
+impl Drop for Launcher {
+    fn drop(&mut self) {
+        let Ok(fs) = std::fs::OpenOptions::new()
+            .create(true)
+            .write(true)
+            .open(&self.settings.project_list_path)
+        else {
+            // TODO: Log
+            return;
+        };
+
+        let writer = std::io::BufWriter::new(fs);
+
+        if serde_json::to_writer_pretty(writer, &self.projects).is_err() {
+            // TODO: Log
+        }
+    }
+}
+
+async fn open_settings(path: impl AsRef<Path>) -> Settings {
+    let Ok(fs) = std::fs::OpenOptions::new()
+        .open(path) else {
+            return Default::default();
+        };
+    let reader = std::io::BufReader::new(fs);
+    serde_json::from_reader::<_, Settings>(reader).unwrap_or_default()
 }
