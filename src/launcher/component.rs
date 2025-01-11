@@ -1,7 +1,7 @@
 use std::path::{Path, PathBuf};
 
 use iced::{
-    widget::{Button, Column, Container, Row, Text},
+    widget::{Button, Column, Container, Row, Text, TextInput},
     Element, Length, Task,
 };
 
@@ -12,6 +12,7 @@ use super::settings::Settings;
 pub struct Launcher {
     settings: Settings,
     projects: Vec<Project>,
+    new_project_name: String,
 }
 
 #[derive(Debug, Clone)]
@@ -22,6 +23,7 @@ pub enum Message {
     CreatedProject,
     OpenProject,
     ProjectsLoaded(Vec<Project>),
+    NewProjectNameChanged(String),
 }
 
 impl Launcher {
@@ -32,6 +34,7 @@ impl Launcher {
             Launcher {
                 projects: Vec::new(),
                 settings: Default::default(),
+                new_project_name: Default::default(),
             },
             Task::perform(open_settings(Self::LAUNCHER_SETTINGS_PATH), |settings| {
                 Message::LoadSettings(settings)
@@ -43,9 +46,13 @@ impl Launcher {
         match message {
             Message::LoadProjects => Task::none(),
             Message::CreateProject => {
-                println!("Create Project button clicked");
+                if self.new_project_name.is_empty() {
+                    // TODO: Log
+                    return Task::none();
+                }
+
                 Task::perform(
-                    create_new_project(self.settings.template_path.clone(), None),
+                    create_new_project(self.settings.template_path.clone(), self.new_project_name.clone()),
                     |_| Message::CreatedProject,
                 )
             }
@@ -62,6 +69,10 @@ impl Launcher {
                 Task::none()
             }
             Message::CreatedProject => Task::none(),
+            Message::NewProjectNameChanged(new_project_name) => {
+                self.new_project_name = new_project_name;
+                Task::none()
+            },
         }
     }
 
@@ -70,9 +81,18 @@ impl Launcher {
             column.push(Text::new(&project.title))
         });
 
-        let buttons = Row::new().push(
+        let sidebar = Row::new().push(
             Column::new()
                 .spacing(20)
+                .push(
+                    TextInput::new(
+                        "Введите название проекта",
+                        &self.new_project_name,
+                    )
+                    .padding(10)
+                    .on_input(Message::NewProjectNameChanged)
+                    .width(Length::Fill)
+                )
                 .push(
                     Button::new(Text::new("Создать проект"))
                         .on_press(Message::CreateProject)
@@ -98,7 +118,7 @@ impl Launcher {
                     .width(Length::FillPortion(1))
                     .spacing(20)
                     .push(Text::new("Действия").size(20))
-                    .push(buttons),
+                    .push(sidebar),
             );
 
         Container::new(content).padding(20).into()
@@ -134,19 +154,16 @@ async fn open_settings(path: impl AsRef<Path>) -> Settings {
 
 async fn create_new_project(
     src: impl AsRef<Path> + Send + Sync + 'static,
-    dst: Option<PathBuf>,
+    project_name: impl AsRef<Path>,
 ) -> Result<PathBuf, ()> {
-    let path = if let Some(path) = dst {
-        path
-    } else {
-        rfd::AsyncFileDialog::new()
-            .pick_folder()
-            .await
-            .as_ref()
-            .map(rfd::FileHandle::path)
-            .map(Path::to_owned)
-            .ok_or(())?
-    };
+    let path = rfd::AsyncFileDialog::new()
+        .pick_folder()
+        .await
+        .as_ref()
+        .map(rfd::FileHandle::path)
+        .map(Path::to_owned)
+        .ok_or(())?
+        .join(project_name);
 
     copy_dir_all(src, path.clone()).await.map_err(|_| ())?;
 
