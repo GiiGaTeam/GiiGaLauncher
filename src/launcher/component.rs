@@ -1,4 +1,4 @@
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 use iced::{
     widget::{Button, Column, Container, Row, Text},
@@ -19,6 +19,7 @@ pub enum Message {
     LoadSettings(Settings),
     LoadProjects,
     CreateProject,
+    CreatedProject,
     OpenProject,
     ProjectsLoaded(Vec<Project>),
 }
@@ -32,11 +33,9 @@ impl Launcher {
                 projects: Vec::new(),
                 settings: Default::default(),
             },
-            Task::perform(async {
-                open_settings(Self::LAUNCHER_SETTINGS_PATH).await
-            }, |settings| {
+            Task::perform(open_settings(Self::LAUNCHER_SETTINGS_PATH), |settings| {
                 Message::LoadSettings(settings)
-            })
+            }),
         )
     }
 
@@ -45,7 +44,10 @@ impl Launcher {
             Message::LoadProjects => Task::none(),
             Message::CreateProject => {
                 println!("Create Project button clicked");
-                Task::none()
+                Task::perform(
+                    create_new_project(self.settings.template_path.clone(), None),
+                    |_| Message::CreatedProject,
+                )
             }
             Message::OpenProject => {
                 println!("Open Project button clicked");
@@ -58,7 +60,8 @@ impl Launcher {
             Message::LoadSettings(settings) => {
                 self.settings = settings;
                 Task::none()
-            },
+            }
+            Message::CreatedProject => Task::none(),
         }
     }
 
@@ -69,6 +72,7 @@ impl Launcher {
 
         let buttons = Row::new().push(
             Column::new()
+                .spacing(20)
                 .push(
                     Button::new(Text::new("Создать проект"))
                         .on_press(Message::CreateProject)
@@ -121,10 +125,48 @@ impl Drop for Launcher {
 }
 
 async fn open_settings(path: impl AsRef<Path>) -> Settings {
-    let Ok(fs) = std::fs::OpenOptions::new()
-        .open(path) else {
-            return Default::default();
-        };
+    let Ok(fs) = std::fs::OpenOptions::new().open(path) else {
+        return Default::default();
+    };
     let reader = std::io::BufReader::new(fs);
     serde_json::from_reader::<_, Settings>(reader).unwrap_or_default()
+}
+
+async fn create_new_project(
+    src: impl AsRef<Path> + Send + Sync + 'static,
+    dst: Option<PathBuf>,
+) -> Result<PathBuf, ()> {
+    let path = if let Some(path) = dst {
+        path
+    } else {
+        rfd::AsyncFileDialog::new()
+            .pick_folder()
+            .await
+            .as_ref()
+            .map(rfd::FileHandle::path)
+            .map(Path::to_owned)
+            .ok_or(())?
+    };
+
+    copy_dir_all(src, path.clone()).await.map_err(|_| ())?;
+
+    Ok(path)
+}
+
+#[async_recursion::async_recursion]
+async fn copy_dir_all(
+    src: impl AsRef<Path> + Send + Sync + 'static,
+    dst: impl AsRef<Path> + Send + Sync + 'static,
+) -> Result<(), std::io::Error> {
+    tokio::fs::create_dir_all(&dst).await?;
+    let mut entries = tokio::fs::read_dir(src).await?;
+    while let Some(entry) = entries.next_entry().await? {
+        let ty = entry.file_type().await?;
+        if ty.is_dir() {
+            copy_dir_all(entry.path(), dst.as_ref().join(entry.file_name())).await?;
+        } else {
+            tokio::fs::copy(entry.path(), dst.as_ref().join(entry.file_name())).await?;
+        }
+    }
+    Ok(())
 }

@@ -1,0 +1,88 @@
+{
+	"GameObjects" : 
+	[
+		{
+			"Components" : 
+			[
+				{
+					"Material" : 
+					{
+						"id" : "00000000-0000-0000-0000-000000000009",
+						"subresource" : 0
+					},
+					"Mesh" : 
+					{
+						"id" : "00000000-0000-0000-0000-00000000000c",
+						"subresource" : 0
+					},
+					"Type" : "class GiiGa::StaticMeshComponent",
+					"Uuid" : "2b113a80-5958-46af-9258-b5c3ecb55230"
+				},
+				{
+					"Parent" : "00000000-0000-0000-0000-000000000000",
+					"Transform" : 
+					{
+						"Location" : 
+						{
+							"x" : 0.0,
+							"y" : 0.0,
+							"z" : 0.0
+						},
+						"Rotation" : 
+						{
+							"x" : -0.0,
+							"y" : 0.0,
+							"z" : 0.0
+						},
+						"Scale" : 
+						{
+							"x" : 1.0,
+							"y" : 1.0,
+							"z" : 1.0
+						}
+					},
+					"Type" : "class GiiGa::TransformComponent",
+					"Uuid" : "491f087e-2d2f-470b-91b4-33eea4bef244"
+				}
+			],
+			"Name" : "Sphere",
+			"Parent" : "00000000-0000-0000-0000-000000000000",
+			"Uuid" : "a9929549-03f4-4d0a-a307-9ffd1d754061"
+		},
+		{
+			"Components" : 
+			[
+				{
+					"Parent" : "491f087e-2d2f-470b-91b4-33eea4bef244",
+					"Transform" : 
+					{
+						"Location" : 
+						{
+							"x" : 0.0,
+							"y" : 0.0,
+							"z" : 0.0
+						},
+						"Rotation" : 
+						{
+							"x" : -0.0,
+							"y" : 0.0,
+							"z" : 0.0
+						},
+						"Scale" : 
+						{
+							"x" : 1.0,
+							"y" : 1.0,
+							"z" : 1.0
+						}
+					},
+					"Type" : "class GiiGa::TransformComponent",
+					"Uuid" : "b304101c-4f3c-492c-94b2-2a95b90bc0e0"
+				}
+			],
+			"Name" : "GameObject",
+			"Parent" : "a9929549-03f4-4d0a-a307-9ffd1d754061",
+			"Uuid" : "2a3945b5-8c6a-4c84-a1f6-b719633f9495"
+		}
+	],
+	"RootGameObject" : "a9929549-03f4-4d0a-a307-9ffd1d754061"
+}

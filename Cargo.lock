@@ -1309,6 +1309,7 @@ dependencies = [
 name = "giga-launcher"
 version = "0.1.0"
 dependencies = [
+ "async-recursion",
  "chrono",
  "iced",
  "rfd",
