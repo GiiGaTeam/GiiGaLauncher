@@ -1,0 +1,98 @@
+2025-01-17 21:28:09,378 INFO [default] Main Function Start
+2025-01-17 21:28:09,626 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Opening or creating registry file "D:\\Test\\sdadsa\\database.json"
+2025-01-17 21:28:09,626 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Load registry "D:\\Test\\sdadsa\\database.json"
+2025-01-17 21:28:09,642 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: DDS Texture Loader
+2025-01-17 21:28:09,643 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: PNG/JPEG Texture Loader
+2025-01-17 21:28:09,643 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Mesh Loader
+2025-01-17 21:28:09,644 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Mesh Loader
+2025-01-17 21:28:09,644 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Material Loader
+2025-01-17 21:28:09,644 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Unnamed
+2025-01-17 21:28:09,645 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Unnamed
+2025-01-17 21:28:09,645 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered saver: Unnamed
+2025-01-17 21:28:09,645 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered saver: Unnamed
+2025-01-17 21:28:09,650 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Found new file: "PyBeh1.py"
+2025-01-17 21:28:09,650 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Register new file: "PyBeh1.py"
+2025-01-17 21:28:09,653 WARNING [ResourceManager] Failed to add new file: No asset loader found for the file path: PyBeh1.py
+2025-01-17 21:28:09,655 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Starting watch D:\Test\sdadsa\Assets
+2025-01-17 21:29:43,271 INFO [default] Main Function Start
+2025-01-17 21:29:43,471 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Opening or creating registry file "D:\\Test\\Test\\database.json"
+2025-01-17 21:29:43,472 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Load registry "D:\\Test\\Test\\database.json"
+2025-01-17 21:29:43,476 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: DDS Texture Loader
+2025-01-17 21:29:43,476 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: PNG/JPEG Texture Loader
+2025-01-17 21:29:43,476 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Mesh Loader
+2025-01-17 21:29:43,477 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Mesh Loader
+2025-01-17 21:29:43,477 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Material Loader
+2025-01-17 21:29:43,477 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Unnamed
+2025-01-17 21:29:43,477 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered loader: Unnamed
+2025-01-17 21:29:43,477 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered saver: Unnamed
+2025-01-17 21:29:43,477 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Registered saver: Unnamed
+2025-01-17 21:29:43,482 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Found new file: "PyBeh1.py"
+2025-01-17 21:29:43,482 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Register new file: "PyBeh1.py"
+2025-01-17 21:29:43,484 WARNING [ResourceManager] Failed to add new file: No asset loader found for the file path: PyBeh1.py
+2025-01-17 21:29:43,487 DEBUG [ResourceManager] [alche@PAVEL] [FUNCTION] [FILE:0] Starting watch D:\Test\Test\Assets
+2025-01-17 21:33:54,119 INFO [default] Main Function Start
+ResourceManager DEBUG 21:33:54:284193 Opening or creating registry file "D:\\Test\\dsad\\database.json"
+ResourceManager DEBUG 21:33:54:285193 Load registry "D:\\Test\\dsad\\database.json"
+ResourceManager DEBUG 21:33:54:295553 Registered loader: DDS Texture Loader
+ResourceManager DEBUG 21:33:54:295553 Registered loader: PNG/JPEG Texture Loader
+ResourceManager DEBUG 21:33:54:295553 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:33:54:296858 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:33:54:296858 Registered loader: Material Loader
+ResourceManager DEBUG 21:33:54:296858 Registered loader: Unnamed
+ResourceManager DEBUG 21:33:54:296858 Registered loader: Unnamed
+ResourceManager DEBUG 21:33:54:298175 Registered saver: Unnamed
+ResourceManager DEBUG 21:33:54:298175 Registered saver: Unnamed
+ResourceManager DEBUG 21:33:54:302349 Found new file: "PyBeh1.py"
+ResourceManager DEBUG 21:33:54:302349 Register new file: "PyBeh1.py"
+ResourceManager WARNING 21:33:54:302349 Failed to add new file: No asset loader found for the file path: PyBeh1.py
+ResourceManager DEBUG 21:33:54:304841 Starting watch D:\Test\dsad\Assets
+2025-01-17 21:51:18,161 INFO [default] Main Function Start
+PyScripting DEBUG 21:51:18:508126 ScriptSystem():: ModuleNotFoundError: No module named 'sgen'
+ResourceManager DEBUG 21:51:18:521128 Opening or creating registry file "D:\\Test\\zz\\database.json"
+ResourceManager DEBUG 21:51:18:521128 Load registry "D:\\Test\\zz\\database.json"
+ResourceManager DEBUG 21:51:18:535806 Registered loader: DDS Texture Loader
+ResourceManager DEBUG 21:51:18:536835 Registered loader: PNG/JPEG Texture Loader
+ResourceManager DEBUG 21:51:18:536835 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:51:18:537841 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:51:18:537841 Registered loader: Material Loader
+ResourceManager DEBUG 21:51:18:537841 Registered loader: Unnamed
+ResourceManager DEBUG 21:51:18:539067 Registered loader: Unnamed
+ResourceManager DEBUG 21:51:18:539067 Registered loader: Script Loader
+ResourceManager DEBUG 21:51:18:539067 Registered saver: Unnamed
+ResourceManager DEBUG 21:51:18:540066 Registered saver: Unnamed
+ResourceManager DEBUG 21:51:18:540066 Registered saver: Material Loader
+ResourceManager DEBUG 21:51:18:540066 Starting watch D:\Test\zz\Assets
+2025-01-17 21:54:42,499 INFO [default] Main Function Start
+PyScripting DEBUG 21:54:42:827188 ScriptSystem():: ModuleNotFoundError: No module named 'sgen'
+ResourceManager DEBUG 21:54:42:836885 Opening or creating registry file "D:\\Test\\zz\\database.json"
+ResourceManager DEBUG 21:54:42:837889 Load registry "D:\\Test\\zz\\database.json"
+ResourceManager DEBUG 21:54:42:840903 Registered loader: DDS Texture Loader
+ResourceManager DEBUG 21:54:42:841927 Registered loader: PNG/JPEG Texture Loader
+ResourceManager DEBUG 21:54:42:841927 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:54:42:841927 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:54:42:842927 Registered loader: Material Loader
+ResourceManager DEBUG 21:54:42:842927 Registered loader: Unnamed
+ResourceManager DEBUG 21:54:42:842927 Registered loader: Unnamed
+ResourceManager DEBUG 21:54:42:842927 Registered loader: Script Loader
+ResourceManager DEBUG 21:54:42:843928 Registered saver: Unnamed
+ResourceManager DEBUG 21:54:42:843928 Registered saver: Unnamed
+ResourceManager DEBUG 21:54:42:843928 Registered saver: Material Loader
+ResourceManager DEBUG 21:54:42:843928 Starting watch D:\Test\zz\Assets
+2025-01-17 21:56:09,405 INFO [default] Main Function Start
+2025-01-17 21:56:09,405 ERROR [default] Crashed with error: Project file 'project.giga' not found in: D:\Test\zz\Assets
+2025-01-17 21:56:14,987 INFO [default] Main Function Start
+PyScripting DEBUG 21:56:15:330268 ScriptSystem():: ModuleNotFoundError: No module named 'sgen'
+ResourceManager DEBUG 21:56:15:339839 Opening or creating registry file "D:\\Test\\zz\\database.json"
+ResourceManager DEBUG 21:56:15:340844 Load registry "D:\\Test\\zz\\database.json"
+ResourceManager DEBUG 21:56:15:343858 Registered loader: DDS Texture Loader
+ResourceManager DEBUG 21:56:15:343858 Registered loader: PNG/JPEG Texture Loader
+ResourceManager DEBUG 21:56:15:343858 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:56:15:343858 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:56:15:343858 Registered loader: Material Loader
+ResourceManager DEBUG 21:56:15:344862 Registered loader: Unnamed
+ResourceManager DEBUG 21:56:15:344862 Registered loader: Unnamed
+ResourceManager DEBUG 21:56:15:344862 Registered loader: Script Loader
+ResourceManager DEBUG 21:56:15:344862 Registered saver: Unnamed
+ResourceManager DEBUG 21:56:15:344862 Registered saver: Unnamed
+ResourceManager DEBUG 21:56:15:344862 Registered saver: Material Loader
+ResourceManager DEBUG 21:56:15:345862 Starting watch D:\Test\zz\Assets

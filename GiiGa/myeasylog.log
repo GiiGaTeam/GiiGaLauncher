@@ -1,0 +1,262 @@
+2025-01-17 21:51:48,563 INFO [default] Main Function Start
+ResourceManager DEBUG 21:51:48:899865 Opening or creating registry file "C:\\Users\\alche\\AppData\\Local\\Temp\\TemplateProject\\database.json"
+ResourceManager DEBUG 21:51:48:900877 Load registry "C:\\Users\\alche\\AppData\\Local\\Temp\\TemplateProject\\database.json"
+ResourceManager DEBUG 21:51:48:962381 Registered loader: DDS Texture Loader
+ResourceManager DEBUG 21:51:48:963381 Registered loader: PNG/JPEG Texture Loader
+ResourceManager DEBUG 21:51:48:963381 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:51:48:963381 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:51:48:963381 Registered loader: Material Loader
+ResourceManager DEBUG 21:51:48:963381 Registered loader: Unnamed
+ResourceManager DEBUG 21:51:48:964433 Registered loader: Unnamed
+ResourceManager DEBUG 21:51:48:964433 Registered loader: Script Loader
+ResourceManager DEBUG 21:51:48:964433 Registered saver: Unnamed
+ResourceManager DEBUG 21:51:48:965433 Registered saver: Unnamed
+ResourceManager DEBUG 21:51:48:965433 Registered saver: Material Loader
+ResourceManager DEBUG 21:51:48:965433 Starting watch C:\Users\alche\AppData\Local\Temp\TemplateProject\Assets
+2025-01-17 21:51:58,725 INFO [default] Main Function Start
+ResourceManager DEBUG 21:51:59:036962 Opening or creating registry file "C:\\Users\\alche\\AppData\\Local\\Temp\\TemplateProject\\database.json"
+ResourceManager DEBUG 21:51:59:037967 Load registry "C:\\Users\\alche\\AppData\\Local\\Temp\\TemplateProject\\database.json"
+ResourceManager DEBUG 21:51:59:100797 Registered loader: DDS Texture Loader
+ResourceManager DEBUG 21:51:59:100797 Registered loader: PNG/JPEG Texture Loader
+ResourceManager DEBUG 21:51:59:100797 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:51:59:101801 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:51:59:101801 Registered loader: Material Loader
+ResourceManager DEBUG 21:51:59:101801 Registered loader: Unnamed
+ResourceManager DEBUG 21:51:59:101801 Registered loader: Unnamed
+ResourceManager DEBUG 21:51:59:101801 Registered loader: Script Loader
+ResourceManager DEBUG 21:51:59:101801 Registered saver: Unnamed
+ResourceManager DEBUG 21:51:59:102818 Registered saver: Unnamed
+ResourceManager DEBUG 21:51:59:102818 Registered saver: Material Loader
+ResourceManager DEBUG 21:51:59:102818 Starting watch C:\Users\alche\AppData\Local\Temp\TemplateProject\Assets
+2025-01-17 21:52:44,485 INFO [default] Main Function Start
+ResourceManager DEBUG 21:52:44:816583 Opening or creating registry file "C:\\Users\\alche\\AppData\\Local\\Temp\\TemplateProject\\database.json"
+ResourceManager DEBUG 21:52:44:816583 Load registry "C:\\Users\\alche\\AppData\\Local\\Temp\\TemplateProject\\database.json"
+ResourceManager DEBUG 21:52:44:880708 Registered loader: DDS Texture Loader
+ResourceManager DEBUG 21:52:44:881214 Registered loader: PNG/JPEG Texture Loader
+ResourceManager DEBUG 21:52:44:881214 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:52:44:881734 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:52:44:881734 Registered loader: Material Loader
+ResourceManager DEBUG 21:52:44:881734 Registered loader: Unnamed
+ResourceManager DEBUG 21:52:44:882254 Registered loader: Unnamed
+ResourceManager DEBUG 21:52:44:882254 Registered loader: Script Loader
+ResourceManager DEBUG 21:52:44:882774 Registered saver: Unnamed
+ResourceManager DEBUG 21:52:44:882774 Registered saver: Unnamed
+ResourceManager DEBUG 21:52:44:882774 Registered saver: Material Loader
+ResourceManager DEBUG 21:52:44:882774 Starting watch C:\Users\alche\AppData\Local\Temp\TemplateProject\Assets
+ResourceManager DEBUG 21:52:46:293764 Found new file: "test\\license.txt"
+ResourceManager DEBUG 21:52:46:294773 Register new file: "test\\license.txt"
+ResourceManager WARNING 21:52:46:294773 Failed to add new file: No asset loader found for the file path: test\license.txt
+ResourceManager DEBUG 21:52:46:296784 Found new file: "test\\pica_pica_-_mini_diorama_01\\license.txt"
+ResourceManager DEBUG 21:52:46:296784 Register new file: "test\\pica_pica_-_mini_diorama_01\\license.txt"
+ResourceManager WARNING 21:52:46:296784 Failed to add new file: No asset loader found for the file path: test\pica_pica_-_mini_diorama_01\license.txt
+ResourceManager DEBUG 21:52:46:297804 Found new file: "test\\pica_pica_-_mini_diorama_01\\scene.bin"
+ResourceManager DEBUG 21:52:46:298809 Register new file: "test\\pica_pica_-_mini_diorama_01\\scene.bin"
+ResourceManager WARNING 21:52:46:298809 Failed to add new file: No asset loader found for the file path: test\pica_pica_-_mini_diorama_01\scene.bin
+ResourceManager DEBUG 21:52:46:304879 Found new file: "test\\scene.bin"
+ResourceManager DEBUG 21:52:46:304879 Register new file: "test\\scene.bin"
+ResourceManager WARNING 21:52:46:305879 Failed to add new file: No asset loader found for the file path: test\scene.bin
+ResourceManager DEBUG 21:52:46:307405 Request for asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:52:46:307405 Found asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:52:46:310420 Request for asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:52:46:310420 Found asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:52:46:416620 Request for asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:52:46:416620 Found asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:52:46:417626 Request for asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:52:46:417626 Found asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:52:46:422652 Request for asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:52:46:422652 Found asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:52:46:434134 Request for asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+ResourceManager DEBUG 21:52:46:434134 Found asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+2025-01-17 21:52:46,443 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:52:46,444 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:52:46,444 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:46,444 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:46,444 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+ResourceManager DEBUG 21:52:49:026024 Saving registry
+2025-01-17 21:52:49,108 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:52:49,108 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,109 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,109 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,109 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:52:49,109 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:52:49,109 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:52:49,110 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,110 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,110 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,110 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:52:49,110 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:52:49,111 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,111 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,111 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,111 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:52:49,111 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:16,805 INFO [default] Main Function Start
+2025-01-17 21:55:16,806 ERROR [default] Crashed with error: Project file 'project.giga' not found in: D:\Test\zz\Assets
+2025-01-17 21:55:23,277 INFO [default] Main Function Start
+ResourceManager DEBUG 21:55:23:598104 Opening or creating registry file "D:\\Test\\zz\\database.json"
+ResourceManager DEBUG 21:55:23:598104 Load registry "D:\\Test\\zz\\database.json"
+ResourceManager DEBUG 21:55:23:601156 Registered loader: DDS Texture Loader
+ResourceManager DEBUG 21:55:23:601156 Registered loader: PNG/JPEG Texture Loader
+ResourceManager DEBUG 21:55:23:601156 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:55:23:602191 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:55:23:602191 Registered loader: Material Loader
+ResourceManager DEBUG 21:55:23:602191 Registered loader: Unnamed
+ResourceManager DEBUG 21:55:23:602191 Registered loader: Unnamed
+ResourceManager DEBUG 21:55:23:602191 Registered loader: Script Loader
+ResourceManager DEBUG 21:55:23:602191 Registered saver: Unnamed
+ResourceManager DEBUG 21:55:23:603197 Registered saver: Unnamed
+ResourceManager DEBUG 21:55:23:603197 Registered saver: Material Loader
+ResourceManager DEBUG 21:55:23:603197 Starting watch D:\Test\zz\Assets
+ResourceManager DEBUG 21:55:24:193122 Found new file: "PyBeh1.py"
+ResourceManager DEBUG 21:55:24:193122 Register new file: "PyBeh1.py"
+ResourceManager DEBUG 21:55:24:194289 Found new file: "PyBeh2.py"
+ResourceManager DEBUG 21:55:24:194289 Register new file: "PyBeh2.py"
+ResourceManager DEBUG 21:55:24:196842 Request for asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:55:24:196842 Found asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:55:24:200877 Request for asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:55:24:200877 Found asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:55:24:218967 Request for asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:55:24:218967 Found asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:55:24:221170 Request for asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:55:24:221170 Found asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:55:24:233634 Request for asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:55:24:233634 Found asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:55:24:252538 Request for asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+ResourceManager DEBUG 21:55:24:252538 Found asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+2025-01-17 21:55:24,263 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:55:24,263 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:55:24,263 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:24,263 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:24,264 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+ResourceManager DEBUG 21:55:28:426843 Saving registry
+2025-01-17 21:55:28,430 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:55:28,430 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,430 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,430 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,431 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:55:28,431 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:55:28,431 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:55:28,431 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,431 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,431 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,431 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:55:28,432 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:55:28,432 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,432 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,433 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,433 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:55:28,433 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:44,748 INFO [default] Main Function Start
+ResourceManager DEBUG 21:57:45:080056 Opening or creating registry file "D:\\Test\\dww\\database.json"
+ResourceManager DEBUG 21:57:45:081066 Load registry "D:\\Test\\dww\\database.json"
+ResourceManager DEBUG 21:57:45:085922 Registered loader: DDS Texture Loader
+ResourceManager DEBUG 21:57:45:085922 Registered loader: PNG/JPEG Texture Loader
+ResourceManager DEBUG 21:57:45:085922 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:57:45:086942 Registered loader: Mesh Loader
+ResourceManager DEBUG 21:57:45:086942 Registered loader: Material Loader
+ResourceManager DEBUG 21:57:45:087943 Registered loader: Unnamed
+ResourceManager DEBUG 21:57:45:087943 Registered loader: Unnamed
+ResourceManager DEBUG 21:57:45:087943 Registered loader: Script Loader
+ResourceManager DEBUG 21:57:45:088950 Registered saver: Unnamed
+ResourceManager DEBUG 21:57:45:088950 Registered saver: Unnamed
+ResourceManager DEBUG 21:57:45:089949 Registered saver: Material Loader
+ResourceManager DEBUG 21:57:45:089949 Starting watch D:\Test\dww\Assets
+ResourceManager DEBUG 21:57:45:890405 Found new file: "PyBeh1.py"
+ResourceManager DEBUG 21:57:45:891469 Register new file: "PyBeh1.py"
+ResourceManager DEBUG 21:57:45:892475 Found new file: "PyBeh2.py"
+ResourceManager DEBUG 21:57:45:893492 Register new file: "PyBeh2.py"
+ResourceManager DEBUG 21:57:45:896007 Request for asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:57:45:896007 Found asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:57:45:900112 Request for asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:57:45:901120 Found asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:57:45:926294 Request for asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:57:45:926294 Found asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:57:45:929324 Request for asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:57:45:929324 Found asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:57:45:939834 Request for asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:57:45:939834 Found asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:57:45:964172 Request for asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+ResourceManager DEBUG 21:57:45:964172 Found asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+2025-01-17 21:57:45,975 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:57:45,975 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:57:45,975 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:45,975 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:45,977 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,811 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:57:55,811 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:57:55,812 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:57:55,812 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,812 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,812 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,813 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:57:55,813 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:57:55,813 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,813 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,813 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,814 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,814 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+ResourceManager DEBUG 21:57:55:814588 Request for asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:57:55:814588 Found asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:57:55:818121 Request for asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:57:55:818121 Found asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:57:55:828737 Request for asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:57:55:828737 Found asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:57:55:829742 Request for asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:57:55:829742 Found asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:57:55:834780 Request for asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:57:55:834780 Found asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:57:55:846921 Request for asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+ResourceManager DEBUG 21:57:55:847926 Found asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+2025-01-17 21:57:55,855 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:57:55,855 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:57:55,856 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,856 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:57:55,856 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,761 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:03,761 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:03,762 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:03,762 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,762 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,762 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,763 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:03,763 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:03,763 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,763 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,763 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,764 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,764 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+ResourceManager DEBUG 21:58:03:764405 Request for asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:58:03:764405 Found asset: 00000000-0000-0000-0000-00000000000e
+ResourceManager DEBUG 21:58:03:766939 Request for asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:58:03:767945 Found asset: 00000000-0000-0000-0000-00000000000b
+ResourceManager DEBUG 21:58:03:777418 Request for asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:58:03:777418 Found asset: 00000000-0000-0000-0000-000000000009
+ResourceManager DEBUG 21:58:03:778509 Request for asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:58:03:778509 Found asset: 00000000-0000-0000-0000-000000000006
+ResourceManager DEBUG 21:58:03:785404 Request for asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:58:03:785404 Found asset: 00000000-0000-0000-0000-00000000000c
+ResourceManager DEBUG 21:58:03:798043 Request for asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+ResourceManager DEBUG 21:58:03:798043 Found asset: 22473b85-92fb-4608-8a40-98ecd11cfbae
+2025-01-17 21:58:03,805 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:03,806 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:03,806 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,806 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:03,807 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+ResourceManager DEBUG 21:58:09:391283 Saving registry
+2025-01-17 21:58:09,394 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:09,394 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,394 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,394 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,396 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:09,396 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:09,396 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:09,396 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,396 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,397 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,397 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:09,397 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] GameObject::~GameObject
+2025-01-17 21:58:09,397 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,398 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,398 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,398 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component
+2025-01-17 21:58:09,398 DEBUG [] [alche@PAVEL] [FUNCTION] [FILE:0] Component::~Component

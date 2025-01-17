@@ -20,7 +20,7 @@ pub enum Message {
     LoadSettings(Settings),
     LoadProjects,
     CreateProject,
-    CreatedProject,
+    CreatedProject(Result<PathBuf, ()>),
     OpenProject,
     ProjectsLoaded(Vec<Project>),
     NewProjectNameChanged(String),
@@ -52,8 +52,11 @@ impl Launcher {
                 }
 
                 Task::perform(
-                    create_new_project(self.settings.template_path.clone(), self.new_project_name.clone()),
-                    |_| Message::CreatedProject,
+                    create_new_project(
+                        self.settings.template_path.clone(),
+                        self.new_project_name.clone(),
+                    ),
+                    Message::CreatedProject,
                 )
             }
             Message::OpenProject => {
@@ -68,11 +71,24 @@ impl Launcher {
                 self.settings = settings;
                 Task::none()
             }
-            Message::CreatedProject => Task::none(),
+            Message::CreatedProject(result) => {
+                let Ok(path) = result else {
+                    // TODO: Log
+                    return Task::none();
+                };
+
+                std::process::Command::new(&self.settings.engine_path)
+                    .arg(path)
+                    .current_dir(&self.settings.engine_path.parent().unwrap())
+                    .spawn()
+                    .unwrap();
+
+                Task::none()
+            }
             Message::NewProjectNameChanged(new_project_name) => {
                 self.new_project_name = new_project_name;
                 Task::none()
-            },
+            }
         }
     }
 
@@ -85,13 +101,10 @@ impl Launcher {
             Column::new()
                 .spacing(20)
                 .push(
-                    TextInput::new(
-                        "Введите название проекта",
-                        &self.new_project_name,
-                    )
-                    .padding(10)
-                    .on_input(Message::NewProjectNameChanged)
-                    .width(Length::Fill)
+                    TextInput::new("Введите название проекта", &self.new_project_name)
+                        .padding(10)
+                        .on_input(Message::NewProjectNameChanged)
+                        .width(Length::Fill),
                 )
                 .push(
                     Button::new(Text::new("Создать проект"))
