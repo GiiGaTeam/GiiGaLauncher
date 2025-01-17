@@ -26,12 +26,19 @@ pub struct Launcher {
 #[derive(Debug, Clone)]
 pub enum Message {
     LoadSettings(Settings),
+
     LoadProjects,
     ProjectsLoaded(Vec<Project>),
+
     CreateProject,
     CreatedProject(Result<PathBuf, ()>),
+
     OpenProject(PathBuf),
+
     NewProjectNameChanged(String),
+
+    AddProject,
+    TryAddProject(PathBuf),
 }
 
 impl Launcher {
@@ -113,6 +120,32 @@ impl Launcher {
                 self.new_project_name = new_project_name;
                 Task::none()
             }
+            Message::AddProject => {
+                Task::perform(choose_path(), |path| Message::TryAddProject(path.unwrap()))
+            }
+            Message::TryAddProject(path) => {
+                if !path.join("Assets").exists() {
+                    return Task::none();
+                }
+
+                if !path.join("database.json").exists() {
+                    return Task::none();
+                }
+
+                if !path.join("project.giga").exists() {
+                    return Task::none();
+                }
+
+                // TODO: Check already added project
+
+                self.projects.push(Project {
+                    title: path.file_stem().unwrap().to_string_lossy().to_string(),
+                    path: path.clone(),
+                    last_open_date: Local::now(),
+                });
+
+                Task::none()
+            }
         }
     }
 
@@ -159,7 +192,7 @@ impl Launcher {
                 )
                 .push(
                     Button::new(Text::new("Добавить проект"))
-                        //.on_press(Message::OpenProject)
+                        .on_press(Message::AddProject)
                         .width(iced::Length::Fill),
                 ),
         );
@@ -277,4 +310,16 @@ async fn load_projects(project_list_path: impl AsRef<Path>) -> Vec<Project> {
     file.read_to_string(&mut buffer).await.unwrap();
 
     serde_json::from_str(&buffer).unwrap_or_default()
+}
+
+async fn choose_path() -> Result<PathBuf, ()> {
+    let path = rfd::AsyncFileDialog::new()
+        .pick_folder()
+        .await
+        .as_ref()
+        .map(rfd::FileHandle::path)
+        .map(Path::to_owned)
+        .ok_or(())?;
+
+    Ok(path)
 }
