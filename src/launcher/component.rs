@@ -1,9 +1,17 @@
-use std::path::{Path, PathBuf};
+use std::{
+    io::Seek,
+    path::{Path, PathBuf},
+    process::Stdio,
+};
 
+use chrono::Local;
 use iced::{
+    font::Weight,
     widget::{Button, Column, Container, Row, Text, TextInput},
     Element, Length, Task,
 };
+
+use tokio::io::{AsyncReadExt, AsyncSeekExt};
 
 use crate::project::Project;
 
@@ -19,10 +27,10 @@ pub struct Launcher {
 pub enum Message {
     LoadSettings(Settings),
     LoadProjects,
+    ProjectsLoaded(Vec<Project>),
     CreateProject,
     CreatedProject(Result<PathBuf, ()>),
-    OpenProject,
-    ProjectsLoaded(Vec<Project>),
+    OpenProject(PathBuf),
     NewProjectNameChanged(String),
 }
 
@@ -44,7 +52,18 @@ impl Launcher {
 
     pub fn update(&mut self, message: Message) -> Task<Message> {
         match message {
-            Message::LoadProjects => Task::none(),
+            Message::LoadSettings(settings) => {
+                self.settings = settings;
+                Task::perform(async {}, |_| Message::LoadProjects)
+            }
+            Message::LoadProjects => Task::perform(
+                load_projects(self.settings.project_list_path.clone()),
+                |projects| Message::ProjectsLoaded(projects),
+            ),
+            Message::ProjectsLoaded(projects) => {
+                self.projects = projects;
+                Task::none()
+            }
             Message::CreateProject => {
                 if self.new_project_name.is_empty() {
                     // TODO: Log
@@ -59,30 +78,35 @@ impl Launcher {
                     Message::CreatedProject,
                 )
             }
-            Message::OpenProject => {
-                println!("Open Project button clicked");
-                Task::none()
-            }
-            Message::ProjectsLoaded(projects) => {
-                self.projects = projects;
-                Task::none()
-            }
-            Message::LoadSettings(settings) => {
-                self.settings = settings;
-                Task::none()
-            }
             Message::CreatedProject(result) => {
                 let Ok(path) = result else {
                     // TODO: Log
                     return Task::none();
                 };
 
+                self.projects.push(Project {
+                    title: path.file_stem().unwrap().to_string_lossy().to_string(),
+                    path: path.clone(),
+                    last_open_date: Local::now(),
+                });
+
+                Task::perform(async move { path }, move |path| Message::OpenProject(path))
+            }
+            Message::OpenProject(path) => {
+                let Some(project) = self.projects.iter_mut().find(|p| p.path == path) else {
+                    return Task::none();
+                };
+
+                project.last_open_date = Local::now();
+
                 std::process::Command::new(&self.settings.engine_path)
                     .arg(path)
                     .current_dir(&self.settings.engine_path.parent().unwrap())
+                    .stdout(Stdio::null())
                     .spawn()
                     .unwrap();
 
+                //std::process::exit(0);
                 Task::none()
             }
             Message::NewProjectNameChanged(new_project_name) => {
@@ -93,9 +117,31 @@ impl Launcher {
     }
 
     pub fn view(&self) -> Element<Message> {
-        let project_list = self.projects.iter().fold(Column::new(), |column, project| {
-            column.push(Text::new(&project.title))
-        });
+        let project_list =
+            self.projects
+                .iter()
+                .fold(Column::new().spacing(20), |column, project| {
+                    column.push(
+                        Button::new(
+                            Column::new()
+                                .width(Length::Fill)
+                                .push(Text::new(&project.title))
+                                .push(
+                                    Text::new(format!("Location: {:?}", project.path))
+                                        .color(iced::Color::from_rgba(1.0, 1.0, 1.0, 0.8)),
+                                )
+                                .push(
+                                    Text::new(format!(
+                                        "Last open date: {}",
+                                        project.last_open_date.format("%d/%m/%Y %H:%M")
+                                    ))
+                                    .color(iced::Color::from_rgba(1.0, 1.0, 1.0, 0.5)),
+                                ),
+                        )
+                        .width(Length::Fill)
+                        .on_press(Message::OpenProject(project.path.clone())),
+                    )
+                });
 
         let sidebar = Row::new().push(
             Column::new()
@@ -112,26 +158,40 @@ impl Launcher {
                         .width(iced::Length::Fill),
                 )
                 .push(
-                    Button::new(Text::new("Открыть проект"))
-                        .on_press(Message::OpenProject)
+                    Button::new(Text::new("Добавить проект"))
+                        //.on_press(Message::OpenProject)
                         .width(iced::Length::Fill),
                 ),
         );
 
-        let content = Row::new()
+        let mut font = iced::Font::default();
+        font.weight = Weight::Bold;
+
+        let content = Column::new()
             .spacing(20)
             .push(
-                Column::new()
-                    .width(Length::FillPortion(4))
-                    .push(Text::new("Список проектов").size(20))
-                    .push(project_list),
+                Text::new("GiiGa Engine")
+                    .size(30)
+                    .width(Length::Fill)
+                    .font(font)
+                    .align_x(iced::alignment::Horizontal::Center),
             )
             .push(
-                Column::new()
-                    .width(Length::FillPortion(1))
+                Row::new()
                     .spacing(20)
-                    .push(Text::new("Действия").size(20))
-                    .push(sidebar),
+                    .push(
+                        Column::new()
+                            .width(Length::FillPortion(4))
+                            .push(Text::new("Список проектов").size(20))
+                            .push(project_list),
+                    )
+                    .push(
+                        Column::new()
+                            .width(Length::FillPortion(1))
+                            .spacing(20)
+                            .push(Text::new("Действия").size(20))
+                            .push(sidebar),
+                    ),
             );
 
         Container::new(content).padding(20).into()
@@ -140,7 +200,7 @@ impl Launcher {
 
 impl Drop for Launcher {
     fn drop(&mut self) {
-        let Ok(fs) = std::fs::OpenOptions::new()
+        let Ok(mut fs) = std::fs::OpenOptions::new()
             .create(true)
             .write(true)
             .open(&self.settings.project_list_path)
@@ -148,6 +208,10 @@ impl Drop for Launcher {
             // TODO: Log
             return;
         };
+
+        if fs.seek(std::io::SeekFrom::Start(0)).is_err() {
+            // TODO: Log
+        }
 
         let writer = std::io::BufWriter::new(fs);
 
@@ -199,4 +263,18 @@ async fn copy_dir_all(
         }
     }
     Ok(())
+}
+
+async fn load_projects(project_list_path: impl AsRef<Path>) -> Vec<Project> {
+    let Ok(mut file) = tokio::fs::File::open(project_list_path).await else {
+        return vec![];
+    };
+
+    file.seek(std::io::SeekFrom::Start(0)).await.unwrap();
+
+    let mut buffer = String::new();
+
+    file.read_to_string(&mut buffer).await.unwrap();
+
+    serde_json::from_str(&buffer).unwrap_or_default()
 }

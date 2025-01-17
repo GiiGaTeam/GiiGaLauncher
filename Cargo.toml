@@ -8,7 +8,7 @@ iced = { version = "0.13.1", features = ["highlighter", "tokio", "debug"]}
 
 chrono = { version = "0.4.39", features = ["serde"] }
 rfd = "0.15.1"
-tokio = { version = "1.0.0", features = ["fs"] }
+tokio = { version = "1.0.0", features = ["full"] }
 
 serde = { version = "1.0.216", features = ["derive"] }
 serde_json = "1.0.133"
