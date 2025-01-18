@@ -1,5 +1,6 @@
 use std::{
-    io::Seek, os::windows::process::CommandExt, path::{Path, PathBuf}, process::Stdio
+    io::Seek,
+    path::{Path, PathBuf},
 };
 
 use chrono::Local;
@@ -10,6 +11,7 @@ use iced::{
 };
 
 use tokio::io::{AsyncReadExt, AsyncSeekExt};
+use tracing::{error, info, warn};
 
 use crate::project::Project;
 
@@ -26,17 +28,18 @@ pub enum Message {
     LoadSettings(Settings),
 
     LoadProjects,
-    ProjectsLoaded(Vec<Project>),
+    LoadedProjects(Vec<Project>),
 
     CreateProject,
-    CreatedProject(Result<PathBuf, ()>),
+    CreatedProject(Result<PathBuf, String>),
 
     OpenProject(PathBuf),
+    OpenedProject(Result<PathBuf, String>),
 
     NewProjectNameChanged(String),
 
     AddProject,
-    TryAddProject(PathBuf),
+    TryAddProject(Option<PathBuf>),
 }
 
 impl Launcher {
@@ -63,40 +66,41 @@ impl Launcher {
             }
             Message::LoadProjects => Task::perform(
                 load_projects(self.settings.project_list_path.clone()),
-                |projects| Message::ProjectsLoaded(projects),
+                |projects| Message::LoadedProjects(projects),
             ),
-            Message::ProjectsLoaded(projects) => {
+            Message::LoadedProjects(projects) => {
                 self.projects = projects;
                 Task::none()
             }
             Message::CreateProject => {
                 if self.new_project_name.is_empty() {
-                    // TODO: Log
+                    error!("The project name cannot be empty.");
                     return Task::none();
                 }
 
                 Task::perform(
                     create_new_project(
-                        self.settings.template_path.clone(),
+                        self.settings.engine_path.join(&self.settings.template_path),
                         self.new_project_name.clone(),
                     ),
                     Message::CreatedProject,
                 )
             }
-            Message::CreatedProject(result) => {
-                let Ok(path) = result else {
-                    // TODO: Log
+            Message::CreatedProject(result) => match result {
+                Ok(path) => {
+                    self.projects.push(Project {
+                        title: path.file_stem().unwrap().to_string_lossy().to_string(),
+                        path: path.clone(),
+                        last_open_date: Local::now(),
+                    });
+
+                    Task::perform(async move { path }, move |path| Message::OpenProject(path))
+                }
+                Err(err) => {
+                    error!("{}", err);
                     return Task::none();
-                };
-
-                self.projects.push(Project {
-                    title: path.file_stem().unwrap().to_string_lossy().to_string(),
-                    path: path.clone(),
-                    last_open_date: Local::now(),
-                });
-
-                Task::perform(async move { path }, move |path| Message::OpenProject(path))
-            }
+                }
+            },
             Message::OpenProject(path) => {
                 let Some(project) = self.projects.iter_mut().find(|p| p.path == path) else {
                     return Task::none();
@@ -104,39 +108,42 @@ impl Launcher {
 
                 project.last_open_date = Local::now();
 
-                // TODO: Do crossplatform
-                const CREATE_NEW_CONSOLE: u32 = 0x00000010;
-                std::process::Command::new(&self.settings.engine_path)
-                    .arg(path)
-                    .current_dir(&self.settings.engine_path.parent().unwrap())
-                    .creation_flags(CREATE_NEW_CONSOLE)
-                    .spawn()
-                    .unwrap();
-
-                Task::none()
+                Task::perform(
+                    open_project(
+                        self.settings.engine_path.clone(),
+                        self.settings.editor_path.clone(),
+                        project.path.clone(),
+                    ),
+                    Message::OpenedProject,
+                )
             }
+            Message::OpenedProject(result) => match result {
+                Ok(path) => {
+                    info!("Opened project: {:?}", path);
+                    Task::none()
+                }
+                Err(err) => {
+                    error!("{}", err);
+                    Task::none()
+                }
+            },
             Message::NewProjectNameChanged(new_project_name) => {
                 self.new_project_name = new_project_name;
                 Task::none()
             }
-            Message::AddProject => {
-                Task::perform(choose_path(), |path| Message::TryAddProject(path.unwrap()))
-            }
+            Message::AddProject => Task::perform(choose_path(), Message::TryAddProject),
             Message::TryAddProject(path) => {
-                if !path.join("Assets").exists() {
+                let Some(path) = path else {
+                    error!("Folder not selected.");
                     return Task::none();
-                }
+                };
 
-                if !path.join("database.json").exists() {
-                    return Task::none();
-                }
-
-                if !path.join("project.giga").exists() {
+                if !validate_project_folder(&path) {
+                    error!("Folder doesn't contain a project.");
                     return Task::none();
                 }
 
                 // TODO: Check already added project
-
                 self.projects.push(Project {
                     title: path.file_stem().unwrap().to_string_lossy().to_string(),
                     path: path.clone(),
@@ -237,18 +244,19 @@ impl Drop for Launcher {
             .write(true)
             .open(&self.settings.project_list_path)
         else {
-            // TODO: Log
+            warn!("Failed to open file with project list.");
             return;
         };
 
         if fs.seek(std::io::SeekFrom::Start(0)).is_err() {
-            // TODO: Log
+            warn!("Failed to seek project list file.");
+            return;
         }
 
         let writer = std::io::BufWriter::new(fs);
 
         if serde_json::to_writer_pretty(writer, &self.projects).is_err() {
-            // TODO: Log
+            warn!("Failed to save project list file.");
         }
     }
 }
@@ -264,17 +272,20 @@ async fn open_settings(path: impl AsRef<Path>) -> Settings {
 async fn create_new_project(
     src: impl AsRef<Path> + Send + Sync + 'static,
     project_name: impl AsRef<Path>,
-) -> Result<PathBuf, ()> {
+) -> Result<PathBuf, String> {
     let path = rfd::AsyncFileDialog::new()
         .pick_folder()
         .await
         .as_ref()
         .map(rfd::FileHandle::path)
         .map(Path::to_owned)
-        .ok_or(())?
+        .ok_or(())
+        .map_err(|_| "Folder not selected".to_string())?
         .join(project_name);
 
-    copy_dir_all(src, path.clone()).await.map_err(|_| ())?;
+    copy_dir_all(src, path.clone())
+        .await
+        .map_err(|err| err.to_string())?;
 
     Ok(path)
 }
@@ -299,26 +310,65 @@ async fn copy_dir_all(
 
 async fn load_projects(project_list_path: impl AsRef<Path>) -> Vec<Project> {
     let Ok(mut file) = tokio::fs::File::open(project_list_path).await else {
+        warn!("Failed to open file with project list.");
         return vec![];
     };
 
-    file.seek(std::io::SeekFrom::Start(0)).await.unwrap();
+    if file.seek(std::io::SeekFrom::Start(0)).await.is_err() {
+        warn!("Failed to seek project list file.");
+    }
 
     let mut buffer = String::new();
 
-    file.read_to_string(&mut buffer).await.unwrap();
+    if file.read_to_string(&mut buffer).await.is_err() {
+        warn!("Failed to read project list file.");
+    }
 
     serde_json::from_str(&buffer).unwrap_or_default()
 }
 
-async fn choose_path() -> Result<PathBuf, ()> {
+async fn choose_path() -> Option<PathBuf> {
     let path = rfd::AsyncFileDialog::new()
         .pick_folder()
         .await
         .as_ref()
         .map(rfd::FileHandle::path)
-        .map(Path::to_owned)
-        .ok_or(())?;
+        .map(Path::to_owned)?;
 
-    Ok(path)
+    Some(path)
+}
+
+async fn open_project(
+    engine_path: impl AsRef<Path>,
+    editor_path: impl AsRef<Path>,
+    project_path: impl AsRef<Path>,
+) -> Result<PathBuf, String> {
+    const CREATE_NEW_CONSOLE: u32 = 0x00000010;
+
+    tokio::process::Command::new(engine_path.as_ref().join(editor_path))
+        .arg(project_path.as_ref().as_os_str())
+        .current_dir(engine_path)
+        .creation_flags(CREATE_NEW_CONSOLE)
+        .spawn()
+        .map_err(|err| err.to_string())?;
+
+    Ok(project_path.as_ref().to_owned())
+}
+
+fn validate_project_folder(path: impl AsRef<Path>) -> bool {
+    let path = path.as_ref();
+
+    if !path.join("Assets").exists() {
+        return false;
+    }
+
+    if !path.join("database.json").exists() {
+        return false;
+    }
+
+    if !path.join("project.giga").exists() {
+        return false;
+    }
+
+    true
 }
