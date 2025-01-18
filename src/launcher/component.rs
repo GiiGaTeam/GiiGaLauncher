@@ -1,7 +1,5 @@
 use std::{
-    io::Seek,
-    path::{Path, PathBuf},
-    process::Stdio,
+    io::Seek, os::windows::process::CommandExt, path::{Path, PathBuf}, process::Stdio
 };
 
 use chrono::Local;
@@ -106,14 +104,15 @@ impl Launcher {
 
                 project.last_open_date = Local::now();
 
+                // TODO: Do crossplatform
+                const CREATE_NEW_CONSOLE: u32 = 0x00000010;
                 std::process::Command::new(&self.settings.engine_path)
                     .arg(path)
                     .current_dir(&self.settings.engine_path.parent().unwrap())
-                    .stdout(Stdio::null())
+                    .creation_flags(CREATE_NEW_CONSOLE)
                     .spawn()
                     .unwrap();
 
-                //std::process::exit(0);
                 Task::none()
             }
             Message::NewProjectNameChanged(new_project_name) => {
