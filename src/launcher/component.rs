@@ -68,7 +68,15 @@ impl Launcher {
                 load_projects(self.settings.project_list_path.clone()),
                 |projects| Message::LoadedProjects(projects),
             ),
-            Message::LoadedProjects(projects) => {
+            Message::LoadedProjects(mut projects) => {
+                projects.retain(|project| {
+                    if project.path.exists() {
+                        true
+                    } else {
+                        info!("Remove project from list: {:?}", project.path);
+                        false
+                    }
+                });
                 self.projects = projects;
                 Task::none()
             }
@@ -88,8 +96,14 @@ impl Launcher {
             }
             Message::CreatedProject(result) => match result {
                 Ok(path) => {
+                    let project_name = if let Some(path) = path.file_stem() {
+                        path.to_str().unwrap_or("New Project")
+                    } else {
+                        "New Project"
+                    };
+
                     self.projects.push(Project {
-                        title: path.file_stem().unwrap().to_string_lossy().to_string(),
+                        title: project_name.to_string(),
                         path: path.clone(),
                         last_open_date: Local::now(),
                     });
@@ -138,14 +152,29 @@ impl Launcher {
                     return Task::none();
                 };
 
+                if self
+                    .projects
+                    .iter()
+                    .find(|proj| proj.path == path)
+                    .is_some()
+                {
+                    info!("Project already in list.");
+                    return Task::none();
+                }
+
                 if !validate_project_folder(&path) {
                     error!("Folder doesn't contain a project.");
                     return Task::none();
                 }
 
-                // TODO: Check already added project
+                let project_name = if let Some(path) = path.file_stem() {
+                    path.to_str().unwrap_or("New Project")
+                } else {
+                    "New Project"
+                };
+
                 self.projects.push(Project {
-                    title: path.file_stem().unwrap().to_string_lossy().to_string(),
+                    title: project_name.to_string(),
                     path: path.clone(),
                     last_open_date: Local::now(),
                 });
@@ -242,6 +271,7 @@ impl Drop for Launcher {
         let Ok(mut fs) = std::fs::OpenOptions::new()
             .create(true)
             .write(true)
+            .truncate(true)
             .open(&self.settings.project_list_path)
         else {
             warn!("Failed to open file with project list.");
@@ -309,9 +339,16 @@ async fn copy_dir_all(
 }
 
 async fn load_projects(project_list_path: impl AsRef<Path>) -> Vec<Project> {
-    let Ok(mut file) = tokio::fs::File::open(project_list_path).await else {
-        warn!("Failed to open file with project list.");
-        return vec![];
+    let mut file = match tokio::fs::OpenOptions::new()
+        .read(true)
+        .open(project_list_path)
+        .await
+    {
+        Ok(file) => file,
+        Err(err) => {
+            warn!("Failed to open file with project list: {}", err);
+            return vec![];
+        }
     };
 
     if file.seek(std::io::SeekFrom::Start(0)).await.is_err() {
