@@ -11,14 +11,14 @@
 						"Location" : 
 						{
 							"x" : 0.0,
-							"y" : 0.0,
+							"y" : 1.0,
 							"z" : 0.0
 						},
 						"Rotation" : 
 						{
 							"x" : -0.0,
 							"y" : 0.0,
-							"z" : 0.0
+							"z" : -0.0
 						},
 						"Scale" : 
 						{
@@ -43,6 +43,26 @@
 					},
 					"Type" : "class GiiGa::StaticMeshComponent",
 					"Uuid" : "2bf1aa1a-978b-4147-bf79-63176da8d30d"
+				},
+				{
+					"PropertyModifications" : 
+					[
+						{
+							"Name" : "speed",
+							"Value" : 0
+						},
+						{
+							"Name" : "trans",
+							"Value" : "00000000-0000-0000-0000-000000000000"
+						}
+					],
+					"Script" : 
+					{
+						"id" : "d3555a2e-3b96-4910-af2f-72d6a3bb6197",
+						"subresource" : 0
+					},
+					"Type" : "class GiiGa::PyBehaviourSchemeComponent",
+					"Uuid" : "70d33505-8024-47e4-ad6f-bf242634cf32"
 				}
 			],
 			"Name" : "Cube",
@@ -55,7 +75,7 @@
 				{
 					"Material" : 
 					{
-						"id" : "00000000-0000-0000-0000-000000000009",
+						"id" : "00000000-0000-0000-0000-00000000000a",
 						"subresource" : 0
 					},
 					"Mesh" : 
@@ -91,6 +111,26 @@
 					},
 					"Type" : "class GiiGa::TransformComponent",
 					"Uuid" : "491f087e-2d2f-470b-91b4-33eea4bef244"
+				},
+				{
+					"PropertyModifications" : 
+					[
+						{
+							"Name" : "speed",
+							"Value" : 0
+						},
+						{
+							"Name" : "beh1",
+							"Value" : "70d33505-8024-47e4-ad6f-bf242634cf32"
+						}
+					],
+					"Script" : 
+					{
+						"id" : "3ee7fb39-f9f0-4601-b710-ae3a9b53fcab",
+						"subresource" : 0
+					},
+					"Type" : "class GiiGa::PyBehaviourSchemeComponent",
+					"Uuid" : "5c71bdcf-cc11-42fa-83da-6fee80625a9c"
 				}
 			],
 			"Name" : "Sphere 1",
@@ -206,6 +246,103 @@
 				"id" : "22473b85-92fb-4608-8a40-98ecd11cfbae",
 				"subresource" : 0
 			}
+		},
+		{
+			"Components" : 
+			[
+				{
+					"Parent" : "00000000-0000-0000-0000-000000000000",
+					"Transform" : 
+					{
+						"Location" : 
+						{
+							"x" : 0.0,
+							"y" : 2.9950313568115234,
+							"z" : 0.0
+						},
+						"Rotation" : 
+						{
+							"x" : -37.763427734375,
+							"y" : 49.273754119873047,
+							"z" : -10.416292190551758
+						},
+						"Scale" : 
+						{
+							"x" : 0.99999994039535522,
+							"y" : 0.99999994039535522,
+							"z" : 0.99999964237213135
+						}
+					},
+					"Type" : "class GiiGa::TransformComponent",
+					"Uuid" : "42bfef8a-e0b5-40f6-a5f0-d2aed347885e"
+				},
+				{
+					"DirectionLightData" : 
+					{
+						"cascadeCount" : 4.0,
+						"color" : 
+						{
+							"x" : 1.0,
+							"y" : 0.85337370634078979,
+							"z" : 0.44607841968536377
+						},
+						"max_intensity" : 0.60000002384185791
+					},
+					"Type" : "class GiiGa::DirectionalLightComponent",
+					"Uuid" : "44b7b620-168b-43b0-9db8-1d7d369c07d1"
+				}
+			],
+			"Name" : "Dir Light",
+			"Parent" : "00000000-0000-0000-0000-000000000000",
+			"Uuid" : "962d8d2e-c628-4ea4-98fd-7aaedf7a53a7"
+		},
+		{
+			"Components" : 
+			[
+				{
+					"Parent" : "00000000-0000-0000-0000-000000000000",
+					"Transform" : 
+					{
+						"Location" : 
+						{
+							"x" : 0.0,
+							"y" : 0.0,
+							"z" : 0.0
+						},
+						"Rotation" : 
+						{
+							"x" : -0.0,
+							"y" : 0.0,
+							"z" : 0.0
+						},
+						"Scale" : 
+						{
+							"x" : 20.0,
+							"y" : 1.0,
+							"z" : 20.0
+						}
+					},
+					"Type" : "class GiiGa::TransformComponent",
+					"Uuid" : "1bfe536c-a9a3-4924-a06f-0d0919af7d41"
+				},
+				{
+					"Material" : 
+					{
+						"id" : "01ae88b1-3ae0-461f-9aa6-f2229cd89fc9",
+						"subresource" : 0
+					},
+					"Mesh" : 
+					{
+						"id" : "1721d2ba-bb33-4593-afec-81edc3700fb0",
+						"subresource" : 0
+					},
+					"Type" : "class GiiGa::StaticMeshComponent",
+					"Uuid" : "c0de18d8-072a-48ff-b969-e33fb20fc6b6"
+				}
+			],
+			"Name" : "Plane",
+			"Parent" : "00000000-0000-0000-0000-000000000000",
+			"Uuid" : "bb480148-0eeb-4f64-9659-17e596ba3a95"
 		}
 	],
 	"LevelSettings" : 
@@ -214,6 +351,8 @@
 	},
 	"RootGameObjects" : 
 	[
-		"e96c756a-b1ee-4763-8a37-0651c1d504c7"
+		"e96c756a-b1ee-4763-8a37-0651c1d504c7",
+		"962d8d2e-c628-4ea4-98fd-7aaedf7a53a7",
+		"bb480148-0eeb-4f64-9659-17e596ba3a95"
 	]
 }
